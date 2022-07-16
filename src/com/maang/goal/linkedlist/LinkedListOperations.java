@@ -33,11 +33,11 @@ public class LinkedListOperations {
 	private static void extracted(ListNode answer) {
 		StringBuilder answerVal = new StringBuilder();
 		while (answer != null && answer.next != null) {
-			answerVal.append(answer.val + " -> ");
+			answerVal.append(answer.value + " -> ");
 			answer = answer.next;
 		}
 		if (answer != null) {
-			answerVal.append(answer.val + " -> NULL");
+			answerVal.append(answer.value + " -> NULL");
 		}
 
 		System.out.println(answerVal.toString());
@@ -166,12 +166,8 @@ public class LinkedListOperations {
 	}
 }
 
-class ListNode {
-	public int val;
-	public ListNode next;
-
-	ListNode(int x) {
-		val = x;
-		next = null;
-	}
-}
+/*
+ * class ListNode { public int val; public ListNode next;
+ * 
+ * ListNode(int x) { val = x; next = null; } }
+ */

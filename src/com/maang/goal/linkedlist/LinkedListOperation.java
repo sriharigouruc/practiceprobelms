@@ -2,71 +2,99 @@ package com.maang.goal.linkedlist;
 
 public class LinkedListOperation {
 
-	static ListNodeO head = null;
+	static ListNode head = null;
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		insert_node(1, 23);
 		insert_node(2, 24);
-		print_ll();
+		insert_node(3, 34);
+		insert_node(4, 44);
+		insert_node(5, 54);
+		insert_node(6, 64);
+		print_ll(head);
+		delete_node(4);
+		print_ll(head);
 	}
 
 	public static void insert_node(int position, int value) {
 		// @params position, integer
 		// @params value, integer
-		
+
+		ListNode listNode = new ListNode(value);
+
 		if (head == null) {
-			head = new ListNodeO(value);
-			System.out.println("here1");
+			head = listNode;
+			return;
 		}
 		if (head != null) {
-			ListNodeO tempNode = head;
+			ListNode tempNode = head;
 			int counter = 1;
-			while (tempNode.next != null && counter <= position) {
+			while (tempNode.next != null && counter < position) {
 				tempNode = tempNode.next;
 				++counter;
 			}
-			if(counter == position)
-			{
-				ListNodeO listNode = new ListNodeO(value);
-				
-						
-			}
-			System.out.println("here2");
+
+			ListNode tail = tempNode.next;
+			tempNode.next = listNode;
+			tempNode = tempNode.next;
+			tempNode.next = tail;
+
 		}
 	}
 
 	public static void delete_node(int position) {
-		// @params position, integer
+
+		if (position == 1 && head != null) {
+			head = head.next;
+			return;
+		}
+
+		if (head != null) {
+
+			ListNode tempNode = head;
+			int counter = 1;
+
+			while (tempNode.next != null && counter < position) {
+				tempNode = tempNode.next;
+				++counter;
+			}
+
+			ListNode tail = tempNode.next;
+
+			if (tail != null)
+				tempNode.next = tail.next;
+			else
+				tempNode.next = null;
+
+		}
+
 	}
 
-	public static void print_ll() {
+	public static void print_ll(ListNode heads) {
 		// Output each element followed by a space
-		System.out.println("here3");
-		if (head != null) {
-			ListNodeO tempNode = head;
-			System.out.println("here33");
-			
+
+		if (heads != null) {
+			ListNode tempNode = heads;
+
 			StringBuffer output = new StringBuffer();
 
-			while (tempNode.next != null) {
+			while (tempNode != null) {
 				output.append(tempNode.value + " ");
 				tempNode = tempNode.next;
 
 			}
-
-			System.out.println(output.toString().trim());
-
+			System.out.println(output.toString());
 		}
 	}
 
 }
 
-class ListNodeO {
+class ListNode {
 	int value;
-	ListNodeO next;
+	ListNode next;
 
-	ListNodeO(int value) {
+	ListNode(int value) {
 		this.value = value;
 	}
 }
